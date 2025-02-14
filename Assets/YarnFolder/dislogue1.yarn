@@ -1,0 +1,44 @@
+﻿title: Start
+tags:
+---
+<<declare $sawVictim = false>>
+Detective 1: we got a detective job to do
+Detective 2: yep
+Detective 1: lets get detectiving.
+
+===
+title: Victim
+tags:
+---
+Detective 1: So this is the victim?
+Detective 2: yep
+    -> No
+        Detective 2: the fuck you mean "no"?  
+    -> Scream
+        Detective 2: why are you screaming?
+        Detective 1: Scream Again
+<<jump Victim2>>
+===
+
+title:Victim2
+tags:
+---
+:The Victim is Joseph Smith
+<<set $sawVictim to true>>
+===
+
+title: Cop
+---
+Cop: Hi
+Cop: Do you even know the name of the victim?
+<<if $sawVictim is true>>
+    ->his name is Joseph
+        Detective 1: his name is Joseph
+        Cop: Good job
+        <<disable Victim>>
+<<else>>
+    -> I do not
+    Cop: go find out please
+<<endif>>
+
+===
