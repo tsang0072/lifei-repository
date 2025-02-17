@@ -31,13 +31,13 @@ public class GameManager : MonoBehaviour
         if (!isPaused)
         {
             Time.timeScale = 0; 
-            cinemachineBrain.enabled=false;
+            //cinemachineBrain.enabled=false;
             isPaused=true;
         }
         else if(isPaused)
         {
             Time.timeScale = 1; 
-            cinemachineBrain.enabled=true;
+            //cinemachineBrain.enabled=true;
             isPaused=false;
             
         }

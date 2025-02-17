@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public GameObject viewCanvas;
-    public GameObject clueList;
+    public GameObject clueMenu;
     public GameObject clueListButton;
 
     public bool isPaused=false;
@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenuButton;
 
 
-    public bool isListShowing=false;
+    public bool isClueMenu=false;
     GameManager gameManager;
     CameraManager cameraManager; 
     ViewClue viewClue; 
@@ -37,31 +37,36 @@ public class UIManager : MonoBehaviour
         viewClue=GetComponent<ViewClue>();
     }
 
-    public void ShowViewCanvas(){
-        gameManager.PauseGame();
-        cameraManager.SwitchToClueCamera();
-        viewCanvas.SetActive(true);
-        clueList.SetActive(false);
-        clueListButton.SetActive(false);
-    }
+    // public void ShowViewCanvas(){
+    //     gameManager.PauseGame();
+    //     cameraManager.SwitchToClueCamera();
+    //     viewCanvas.SetActive(true);
+    //     clueList.SetActive(false);
+    //     clueListButton.SetActive(false);
+    // }
 
-    public void BackToClueList(){
-        gameManager.PauseGame();
-        cameraManager.SwitchToVirtualCamera();
-        viewCanvas.SetActive(false);
-        clueList.SetActive(true);
-        clueListButton.SetActive(true);
-        //viewClue.CloseInspection();
-    }
+    // public void BackToClueList(){
+    //     gameManager.PauseGame();
+    //     cameraManager.SwitchToVirtualCamera();
+    //     viewCanvas.SetActive(false);
+    //     clueList.SetActive(true);
+    //     clueListButton.SetActive(true);
+    // }
 
     public void TriggerClueList(){
-        if(!isListShowing){
-            isListShowing = true;
-            clueList.SetActive(true);
+        if(!isClueMenu){
+            gameManager.PauseGame();
+            cameraManager.SwitchToClueCamera();
+
+            isClueMenu = true;
+            clueMenu.SetActive(true);
             pauseMenuButton.SetActive(false);
         }else{
-            clueList.SetActive(false);
-            isListShowing=false;
+            gameManager.PauseGame();
+            cameraManager.SwitchToVirtualCamera();
+
+            clueMenu.SetActive(false);
+            isClueMenu=false;
             pauseMenuButton.SetActive(true);
         }
         

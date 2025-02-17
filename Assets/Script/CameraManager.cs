@@ -15,7 +15,7 @@ public class CameraManager : MonoBehaviour
     public float minFOV = 30f; // Minimum field of view (zoom in)
     public float maxFOV = 80f; // Maximum field of view (zoom out)
 
-    public GameObject viewCamera;
+    public GameObject clueCamera;
 
     void Awake() {
         if(!instance){
@@ -100,14 +100,14 @@ public class CameraManager : MonoBehaviour
     }
 
     public void SwitchToClueCamera(){
-        viewCamera.SetActive(true);
+        clueCamera.SetActive(true);
         CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
         activeCamera.enabled = false;
 
     }
 
     public void SwitchToVirtualCamera(){
-        viewCamera.SetActive(false);
+        clueCamera.SetActive(false);
         CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
         activeCamera.enabled = true;
     }

@@ -9,6 +9,9 @@ public class ViewClue : MonoBehaviour
 
     private GameObject targetObject;
 
+    private Transform targetPostison;
+    public GameObject CluePrefab;
+
     void Update()
     {
         //Transform.Rotate limits the rotation to the default settings' XYZ rotation
@@ -37,15 +40,22 @@ public class ViewClue : MonoBehaviour
 
     }
     public void ShowClue(){
-        // targetObject=this.gameObject;
-        // targetObject.SetActive(true);
-        if(targetObject == null){
-            targetObject = this.gameObject;
-            targetObject.SetActive(true);
+        if(targetObject != null){
+            
+            targetObject.SetActive(false);
         }
+        targetObject=this.gameObject;
+        targetObject.SetActive(true);
     }
     public void CloseInspection(){
         targetObject=this.gameObject;
         targetObject.SetActive(false);
+    }
+
+    public void DisplayClue(){
+        if(targetPostison!=null){
+            Destroy(targetPostison.gameObject);
+        }
+        
     }
 }
