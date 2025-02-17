@@ -7,10 +7,10 @@ public class ViewClue : MonoBehaviour
     public float moveSpeed;
     public GameObject roationAxis2;
 
-    private GameObject targetObject;
+    // private GameObject targetObject;
 
-    private Transform targetPostison;
-    public GameObject CluePrefab;
+    // private Transform targetPostison;
+    // public GameObject CluePrefab;
 
     void Update()
     {
@@ -39,23 +39,23 @@ public class ViewClue : MonoBehaviour
         }  
 
     }
-    public void ShowClue(){
-        if(targetObject != null){
+    // public void ShowClue(){
+    //     if(targetObject != null){
             
-            targetObject.SetActive(false);
-        }
-        targetObject=this.gameObject;
-        targetObject.SetActive(true);
-    }
-    public void CloseInspection(){
-        targetObject=this.gameObject;
-        targetObject.SetActive(false);
-    }
+    //         targetObject.SetActive(false);
+    //     }
+    //     targetObject=this.gameObject;
+    //     targetObject.SetActive(true);
+    // }
+    // public void CloseInspection(){
+    //     targetObject=this.gameObject;
+    //     targetObject.SetActive(false);
+    // }
 
-    public void DisplayClue(){
-        if(targetPostison!=null){
-            Destroy(targetPostison.gameObject);
-        }
+    // public void DisplayClue(){
+    //     if(targetPostison!=null){
+    //         Destroy(targetPostison.gameObject);
+    //     }
         
-    }
+    // }
 }

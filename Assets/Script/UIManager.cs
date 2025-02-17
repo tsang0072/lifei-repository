@@ -77,11 +77,13 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(true);
             isPaused = true;
             clueListButton.SetActive(false);
+            pauseMenuButton.SetActive(false);
         }else{
             gameManager.PauseGame();
             pauseMenu.SetActive(false);
             isPaused=false;
             clueListButton.SetActive(true);
+            pauseMenuButton.SetActive(true);
         }
     }
     public void Exit(){

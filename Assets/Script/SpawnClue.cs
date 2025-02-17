@@ -5,29 +5,42 @@ using UnityEngine;
 
 public class SpawnClue : MonoBehaviour
 {
-    //public List<GameObject> CluePrefabs = new List<GameObject>();
-    //public GameObject[] ClueButtons;
+    public GameObject[] cluePrefabs; // Array to hold the 8 prefabs
+    private GameObject currentPrefab; // Reference to the currently instantiated prefab
 
-    public GameObject cluePrefab;
-    //private Transform targetPostison;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void ShowCluePrefab(){
-        Vector3 targetPostison=new Vector3(0, 0, 0);
-
-        if(targetPostison!=null){
-            Destroy(gameObject);
+    // Method to spawn a prefab based on the button clicked
+    void Start(){
+        if (currentPrefab != null)
+        {
+            Destroy(currentPrefab);
         }
-        Instantiate(cluePrefab, targetPostison , Quaternion.identity);
+    }
+    public void SpawnPrefab(int prefabIndex)
+    {
+        // Destroy the current prefab if it exists
+        if (currentPrefab != null)
+        {
+            Destroy(currentPrefab);
+        }
+
+        // Check if the prefabIndex is valid
+        if (prefabIndex >= 0 && prefabIndex < cluePrefabs.Length)
+        {
+            // Instantiate the new prefab at a specific position
+            Vector3 spawnPosition=new Vector3(-12,133,225);
+            currentPrefab = Instantiate(cluePrefabs[prefabIndex], spawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning("Invalid prefab index!");
+        }
+    }
+
+    public void ClosePrefab(){
+        if (currentPrefab != null)
+        {
+            Destroy(currentPrefab);
+        }
 
     }
 }
