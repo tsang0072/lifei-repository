@@ -18,7 +18,6 @@ public class UIManager : MonoBehaviour
     public bool isClueMenu=false;
     GameManager gameManager;
     CameraManager cameraManager; 
-    ViewClue viewClue; 
 
     void Awake() {
         if(!instance){
@@ -34,35 +33,16 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameManager=GameManager.instance;
         cameraManager=CameraManager.instance;
-        viewClue=GetComponent<ViewClue>();
     }
 
-    // public void ShowViewCanvas(){
-    //     gameManager.PauseGame();
-    //     cameraManager.SwitchToClueCamera();
-    //     viewCanvas.SetActive(true);
-    //     clueList.SetActive(false);
-    //     clueListButton.SetActive(false);
-    // }
-
-    // public void BackToClueList(){
-    //     gameManager.PauseGame();
-    //     cameraManager.SwitchToVirtualCamera();
-    //     viewCanvas.SetActive(false);
-    //     clueList.SetActive(true);
-    //     clueListButton.SetActive(true);
-    // }
-
-    public void TriggerClueList(){
+    public void TriggerClueMenu(){
         if(!isClueMenu){
-            gameManager.PauseGame();
             cameraManager.SwitchToClueCamera();
 
             isClueMenu = true;
             clueMenu.SetActive(true);
             pauseMenuButton.SetActive(false);
         }else{
-            gameManager.PauseGame();
             cameraManager.SwitchToVirtualCamera();
 
             clueMenu.SetActive(false);

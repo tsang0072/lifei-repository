@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class ViewClue : MonoBehaviour
@@ -7,15 +6,8 @@ public class ViewClue : MonoBehaviour
     public float moveSpeed;
     public GameObject roationAxis2;
 
-    // private GameObject targetObject;
-
-    // private Transform targetPostison;
-    // public GameObject CluePrefab;
-
     void Update()
     {
-        //Transform.Rotate limits the rotation to the default settings' XYZ rotation
-        //Euler Angles bases it on how it currently rests, making it more fun to play with.
         if (Input.GetKey(KeyCode.A))
         {
             transform.eulerAngles += moveSpeed * Time.deltaTime * new Vector3(0,30,0);        
@@ -39,23 +31,5 @@ public class ViewClue : MonoBehaviour
         }  
 
     }
-    // public void ShowClue(){
-    //     if(targetObject != null){
-            
-    //         targetObject.SetActive(false);
-    //     }
-    //     targetObject=this.gameObject;
-    //     targetObject.SetActive(true);
-    // }
-    // public void CloseInspection(){
-    //     targetObject=this.gameObject;
-    //     targetObject.SetActive(false);
-    // }
-
-    // public void DisplayClue(){
-    //     if(targetPostison!=null){
-    //         Destroy(targetPostison.gameObject);
-    //     }
-        
-    // }
+    
 }

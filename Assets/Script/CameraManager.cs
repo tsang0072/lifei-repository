@@ -16,6 +16,9 @@ public class CameraManager : MonoBehaviour
     public float maxFOV = 80f; // Maximum field of view (zoom out)
 
     public GameObject clueCamera;
+    CinemachineBrain cinemachineBrain;
+
+    UIManager uiManager;
 
     void Awake() {
         if(!instance){
@@ -30,11 +33,14 @@ public class CameraManager : MonoBehaviour
     {
         // Activate the first virtual camera by default
         SwitchCamera(currentCameraIndex);
+        cinemachineBrain=gameObject.GetComponent<CinemachineBrain>();
+
+        uiManager=UIManager.instance;
     }
 
     void Update()
     {
-        if(EventSystem.current.currentSelectedGameObject != null){
+        if(EventSystem.current.currentSelectedGameObject != null||uiManager.isPaused||uiManager.isClueMenu){
             return;//prevent rotate camera while viewing clue
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -102,16 +108,15 @@ public class CameraManager : MonoBehaviour
     public void SwitchToClueCamera(){
         clueCamera.SetActive(true);
         CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
-        activeCamera.enabled = false;
-
+        activeCamera.gameObject.SetActive(false);
+        Debug.Log("In Game camera is locked");
     }
 
     public void SwitchToVirtualCamera(){
         clueCamera.SetActive(false);
         CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
-        activeCamera.enabled = true;
+        activeCamera.gameObject.SetActive(true);
+        Debug.Log("In Game camera is working");
     }
-
-    
 
 }

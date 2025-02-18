@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-
+    CameraManager cameraManager;
 
     public bool isPaused;
 
-    public CinemachineBrain cinemachineBrain;
+    CinemachineBrain cinemachineBrain;
 
     void Awake() {
         if(!instance){
@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-    
-
-    
+    void Start() {
+        cameraManager=CameraManager.instance;
+    }
 
     public void PauseGame(){
 
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         else if(isPaused)
         {
             Time.timeScale = 1; 
-            //cinemachineBrain.enabled=true;
+           //cinemachineBrain.enabled=true;
             isPaused=false;
             
         }
