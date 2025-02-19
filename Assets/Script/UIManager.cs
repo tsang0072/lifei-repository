@@ -6,16 +6,20 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-    public GameObject viewCanvas;
+
+    //ClueMenu 
     public GameObject clueMenu;
     public GameObject clueListButton;
+    public GameObject[] clueIntros;
+    private GameObject currentIntro;
+    public bool isClueMenu=false;
 
+    //PauseMenu
     public bool isPaused=false;
     public GameObject pauseMenu;
     public GameObject pauseMenuButton;
 
 
-    public bool isClueMenu=false;
     GameManager gameManager;
     CameraManager cameraManager; 
 
@@ -64,6 +68,25 @@ public class UIManager : MonoBehaviour
             isPaused=false;
             clueListButton.SetActive(true);
             pauseMenuButton.SetActive(true);
+        }
+    }
+
+    public void ShowClueIntro(int introIndex){
+        if(currentIntro!=null){
+            currentIntro.SetActive(false);
+        }
+
+        if (introIndex >= 0 && introIndex < clueIntros.Length){
+            currentIntro=clueIntros[introIndex];
+            currentIntro.SetActive(true);
+        }else
+        {
+            Debug.LogWarning("Invalid clue intro index!");
+        }
+    }
+    public void CLoseCLueIntro(){
+        if(currentIntro!=null){
+            currentIntro.SetActive(false);
         }
     }
     public void Exit(){

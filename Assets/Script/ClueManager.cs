@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ClueManager : MonoBehaviour
 {
     private GameObject targetObject;
-
-    public bool isViewing=false;
-    // public GameObject[] clues;
-    // public GameObject[] cluesButton;
-    // private int currentClueIndex = 0;
     public GameObject clue1Button;
     public GameObject clue2Button;
     public GameObject clue3Button;
@@ -19,12 +15,7 @@ public class ClueManager : MonoBehaviour
     // public GameObject clue6Button;
     // public GameObject clue7Button;
     // public GameObject clue8Button;
-
-    public GameObject clue1;
-    public GameObject clue2;
-    public GameObject clue3;
-    public GameObject clue4;
-    
+    public bool canChangeRoom=false;
 
     void Start()
     {
@@ -62,6 +53,11 @@ public class ClueManager : MonoBehaviour
             Debug.Log("Clue Collected");
             
         }
+        if(other.gameObject.CompareTag("Door")){
+            canChangeRoom=true;
+            Debug.Log("Room changed");
+        }
     }
+    
     
 }

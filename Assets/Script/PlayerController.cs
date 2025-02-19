@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
@@ -13,12 +15,16 @@ public class PlayerController : MonoBehaviour
     public NavMeshAgent agent; 
 
     private GameObject targetObject;
+    private Vector3 targetPosition;
 
     DialogueRunner dialogueRunner;
+    ClueManager clueManager;
 
     void Start()
     {
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+        clueManager=gameObject.GetComponent<ClueManager>();
+        targetPosition=new Vector3(5,1,23);
     }
 
     void Update()
@@ -44,6 +50,7 @@ public class PlayerController : MonoBehaviour
                     // Set the NavMeshAgent's destination to the hit point
                     agent.SetDestination(navHit.position);
                 }
+                
             }
 
             if (hit.collider.CompareTag("Interactable"))
@@ -59,7 +66,6 @@ public class PlayerController : MonoBehaviour
                 }
             if (hit.collider.CompareTag("Cop"))
                 {
-                    // Set the target object
                     targetObject = hit.collider.gameObject;
 
                     // Move to the target object's position
@@ -67,9 +73,19 @@ public class PlayerController : MonoBehaviour
                     {
                         agent.SetDestination(navHit.position);
                     }
-                }    
+                }
+            if (hit.collider.CompareTag("Door")){
+                targetObject = hit.collider.gameObject;
+                if (NavMesh.SamplePosition(targetObject.transform.position, out NavMeshHit navHit, 1.0f, NavMesh.AllAreas))
+                    {
+                        agent.SetDestination(navHit.position);
+                    }
+                if(clueManager.canChangeRoom){
+                    agent.SetDestination(targetPosition);
+                }   
+            }
+            
         }
-
         
     }
 }

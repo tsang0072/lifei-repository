@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager instance;
     public CinemachineVirtualCamera[] virtualCameras; 
+    public CinemachineVirtualCamera[] RBvirtualCameras;
     private int currentCameraIndex = 0; // Index of the currently active camera
 
     public float zoomSpeed = 5f; 
@@ -43,6 +44,7 @@ public class CameraManager : MonoBehaviour
         if(EventSystem.current.currentSelectedGameObject != null||uiManager.isPaused||uiManager.isClueMenu){
             return;//prevent rotate camera while viewing clue
         }
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             SwitchToPreviousCamera();

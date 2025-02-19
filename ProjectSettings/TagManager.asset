@@ -9,6 +9,7 @@ TagManager:
   - Cop
   - Victim
   - Suspect
+  - Door
   layers:
   - Default
   - TransparentFX
