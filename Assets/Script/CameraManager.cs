@@ -9,8 +9,8 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager instance;
     public CinemachineVirtualCamera[] virtualCameras; 
-    public CinemachineVirtualCamera[] RBvirtualCameras;
-    private int currentCameraIndex = 0; // Index of the currently active camera
+    //public CinemachineVirtualCamera[] RBvirtualCameras;
+    [SerializeField] private int currentCameraIndex = 0; // Index of the currently active camera
 
     public float zoomSpeed = 5f; 
     public float minFOV = 30f; // Minimum field of view (zoom in)
@@ -18,6 +18,7 @@ public class CameraManager : MonoBehaviour
 
     public GameObject clueCamera;
     CinemachineBrain cinemachineBrain;
+    TransferPlayer transferPlayer;
 
     UIManager uiManager;
 
@@ -35,6 +36,7 @@ public class CameraManager : MonoBehaviour
         // Activate the first virtual camera by default
         SwitchCamera(currentCameraIndex);
         cinemachineBrain=gameObject.GetComponent<CinemachineBrain>();
+        transferPlayer=FindFirstObjectByType<TransferPlayer>();
 
         uiManager=UIManager.instance;
     }
@@ -44,41 +46,61 @@ public class CameraManager : MonoBehaviour
         if(EventSystem.current.currentSelectedGameObject != null||uiManager.isPaused||uiManager.isClueMenu){
             return;//prevent rotate camera while viewing clue
         }
-
+        
         if (Input.GetKeyDown(KeyCode.A))
         {
             SwitchToPreviousCamera();
+            
         }
-
         if (Input.GetKeyDown(KeyCode.D))
         {
             SwitchToNextCamera();
+            
         }
 
-        HandleZoom();
+       HandleZoom();
+            
     }
 
      void SwitchToNextCamera()
     {
         currentCameraIndex++;
-        if (currentCameraIndex >= virtualCameras.Length)
-        {
+
+        if(!transferPlayer.isRoomB){
+        if (currentCameraIndex > 1)
+            {
             currentCameraIndex = 0; // Wrap around to the first camera
-        }
+            }
+        }else if(transferPlayer.isRoomB)
+        {
+            Debug.Log("Room changed");
+            if (currentCameraIndex >= virtualCameras.Length)
+            {
+            currentCameraIndex = 2; // Wrap around to the first camera
+            }
+            }
         SwitchCamera(currentCameraIndex);
     }
 
     void SwitchToPreviousCamera()
     {
         currentCameraIndex--;
+        if(!transferPlayer.isRoomB){
         if (currentCameraIndex < 0)
         {
-            currentCameraIndex = virtualCameras.Length - 1; // Wrap around to the last camera
+            currentCameraIndex = 1; // Wrap around to the last camera
+        }
+        }else if(transferPlayer.isRoomB){;
+            Debug.Log("Room changed");
+            if (currentCameraIndex < 2)
+            {
+            currentCameraIndex = virtualCameras.Length - 1; 
+            }
         }
         SwitchCamera(currentCameraIndex);
     }
 
-    void SwitchCamera(int index)
+    public void SwitchCamera(int index)
     {
         // Disable all virtual cameras
         foreach (var vcam in virtualCameras)
@@ -92,10 +114,7 @@ public class CameraManager : MonoBehaviour
 
     void HandleZoom()
     {
-        // Get the currently active virtual camera
         CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
-
-        // Get the mouse scroll input
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
         // Adjust the camera's field of view based on scroll input
@@ -120,5 +139,4 @@ public class CameraManager : MonoBehaviour
         activeCamera.gameObject.SetActive(true);
         Debug.Log("In Game camera is working");
     }
-
 }

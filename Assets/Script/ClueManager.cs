@@ -55,7 +55,7 @@ public class ClueManager : MonoBehaviour
         }
         if(other.gameObject.CompareTag("Door")){
             canChangeRoom=true;
-            Debug.Log("Room changed");
+            
         }
     }
     
