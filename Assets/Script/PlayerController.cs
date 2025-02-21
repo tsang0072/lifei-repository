@@ -18,12 +18,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition;
 
     DialogueRunner dialogueRunner;
-    ClueManager clueManager;
 
     void Start()
     {
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
-        clueManager=gameObject.GetComponent<ClueManager>();
         targetPosition=new Vector3(5,1,23);
     }
 

@@ -11,54 +11,27 @@ public class TransferPlayer : MonoBehaviour
 
     CameraManager cameraManager;
     GameManager gameManager;
+    ClueManager clueManager;
 
     void Start()
     {
         cameraManager=CameraManager.instance;
         gameManager=GameManager.instance;   
+        clueManager=FindObjectOfType<ClueManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
         {
-            if(!gameManager.isRoomB){
+            if(!gameManager.isRoomB&&clueManager.canChangeRoom){
                 gameManager.isRoomB=true;
                 ChangeToRoomB();
-            }else if(gameManager.isRoomB){
+            }else if(gameManager.isRoomB&&clueManager.canCollect7){
                 gameManager.isRoomB=false;
                 ChangeToMian();
             }
 
-
-
-
-        //     if(!isRoomB)
-        //     {
-        //     NavMeshAgent agent = player.GetComponent<NavMeshAgent>();
-        //     Debug.Log("Change to RB");
-
-        //     agent.enabled = false;
-        //     player.transform.position = target1.position;
-        //     agent.enabled = true;
-
-        //     isRoomB=true;
-        //     cameraManager.SwitchCamera(2);
-        //     cameraManager.currentCameraIndex=2;
-        //     Destroy(this.gameObject);
-        //    }
-        //    else if(isRoomB)
-        //    {
-        //     NavMeshAgent agent = player.GetComponent<NavMeshAgent>();
-
-        //     agent.enabled = false;
-        //     player.transform.position = target1.position;
-        //     agent.enabled = true;
-
-        //     isRoomB=false;
-        //     cameraManager.SwitchCamera(0);
-        //     cameraManager.currentCameraIndex=0;
-        //    }
        }
     }
 
