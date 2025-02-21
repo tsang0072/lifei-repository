@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     public static CameraManager instance;
     public CinemachineVirtualCamera[] virtualCameras; 
     //public CinemachineVirtualCamera[] RBvirtualCameras;
-    [SerializeField] private int currentCameraIndex = 0; // Index of the currently active camera
+    public int currentCameraIndex = 0; // Index of the currently active camera
 
     public float zoomSpeed = 5f; 
     public float minFOV = 30f; // Minimum field of view (zoom in)
@@ -18,9 +18,9 @@ public class CameraManager : MonoBehaviour
 
     public GameObject clueCamera;
     CinemachineBrain cinemachineBrain;
-    TransferPlayer transferPlayer;
 
     UIManager uiManager;
+    GameManager gameManager;
 
     void Awake() {
         if(!instance){
@@ -36,9 +36,9 @@ public class CameraManager : MonoBehaviour
         // Activate the first virtual camera by default
         SwitchCamera(currentCameraIndex);
         cinemachineBrain=gameObject.GetComponent<CinemachineBrain>();
-        transferPlayer=FindFirstObjectByType<TransferPlayer>();
 
         uiManager=UIManager.instance;
+        gameManager=GameManager.instance;   
     }
 
     void Update()
@@ -66,14 +66,14 @@ public class CameraManager : MonoBehaviour
     {
         currentCameraIndex++;
 
-        if(!transferPlayer.isRoomB){
+        if(!gameManager.isRoomB){
         if (currentCameraIndex > 1)
             {
             currentCameraIndex = 0; // Wrap around to the first camera
             }
-        }else if(transferPlayer.isRoomB)
+        }else if(gameManager.isRoomB)
         {
-            Debug.Log("Room changed");
+            Debug.Log("In roomB");
             if (currentCameraIndex >= virtualCameras.Length)
             {
             currentCameraIndex = 2; // Wrap around to the first camera
@@ -85,13 +85,14 @@ public class CameraManager : MonoBehaviour
     void SwitchToPreviousCamera()
     {
         currentCameraIndex--;
-        if(!transferPlayer.isRoomB){
+        if(!gameManager.isRoomB){
         if (currentCameraIndex < 0)
         {
             currentCameraIndex = 1; // Wrap around to the last camera
         }
-        }else if(transferPlayer.isRoomB){;
-            Debug.Log("Room changed");
+        }else if(gameManager.isRoomB)
+        {
+            Debug.Log("Back to Main");
             if (currentCameraIndex < 2)
             {
             currentCameraIndex = virtualCameras.Length - 1; 

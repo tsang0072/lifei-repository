@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     CameraManager cameraManager;
 
     public bool isPaused;
+    public bool isRoomB;
 
     CinemachineBrain cinemachineBrain;
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     }
     void Start() {
         cameraManager=CameraManager.instance;
+        isRoomB=false;
     }
 
     public void PauseGame(){

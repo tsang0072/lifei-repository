@@ -80,9 +80,7 @@ public class PlayerController : MonoBehaviour
                     {
                         agent.SetDestination(navHit.position);
                     }
-                if(clueManager.canChangeRoom){
-                    agent.SetDestination(targetPosition);
-                }   
+                  
             }
             
         }
