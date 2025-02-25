@@ -1,44 +1,97 @@
-﻿title: Start
+title: Start
 tags:
 ---
-<<declare $sawVictim = false>>
-Detective 1: we got a detective job to do
-Detective 2: yep
-Detective 1: lets get detectiving.
+<<declare $sawBody = false>>
+<<declare $sawDoor = false>>
+Nate: Damn. Nice place.
+
+// Cass: The curation is terrible. You can barely tell where one section ends and another begins. And all these different cultures are just getting lumped in as ‘ancient civilisations’. It’s just lazy.
+
+// Nate: … Right. So. What’ve we got?
+
+// Cass: Unknown suspect kicked in the door, broke a display case and got into a fight with our unfortunate soul over there.
+
+// Nate: Christ, they’re bringing us in on B&E now?
+
+// Cass: Attempted B&E. Now it’s a homicide. Lucky we’re being brought in at all.
+
+// Nate: Hmph. I’ll take a look around. See what’s going on.
+
+// Cass: Remember to check with our witness. He’s there.
+
+Nate: Yeah, yeah I’ll do my job.
+
 
 ===
-title: Victim
+
+title:Victim1
 tags:
 ---
-Detective 1: So this is the victim?
-Detective 2: yep
-    -> No
-        Detective 2: the fuck you mean "no"?  
-    -> Scream
-        Detective 2: why are you screaming?
-        Detective 1: Scream Again
-<<jump Victim2>>
-===
+Nate: Looking a little stiff aren’t you? Rigor mortis shouldn’t set in for another hour or so. What happened to you..
+Nate: Stuart Mare. Doesn’t look like security. Why were you putting up a fight?
 
-title:Victim2
+<<set $sawBody to true>>
+===
+title:Door
 tags:
 ---
-:The Victim is Joseph Smith
-<<set $sawVictim to true>>
+Nate: Damn. Locked.
+
+<<set $sawDoor to true>>
 ===
 
-title: Cop
+title: Suspect1
 ---
-Cop: Hi
-Cop: Do you even know the name of the victim?
-<<if $sawVictim is true>>
-    ->his name is Joseph
-        Detective 1: his name is Joseph
-        Cop: Good job
-        <<disable Victim>>
-<<else>>
-    -> I do not
-    Cop: go find out please
-<<endif>>
+Nate: I’m Detective Huston. I understand you saw the murder?
 
+Howard: Um, yes, well, no, not exactly. 
+
+Nate: What do you mean?
+
+Howard: I just mean that I, I heard it. And I saw the guy running away.
+
+Nate: Right. And what’s your name?
+
+Howard: Um, it’s Howard. Howard Philips.
+
+<<jump Suspect2>>
 ===
+
+title: Suspect2
+---
+Nate: Ok.  
+    -> Did you call as soon as you saw the murder?
+        Howard: Yes, well, within a few minutes.
+        Nate: So was it as soon as or after a few minutes?
+        Howard: I, I think it would have been a few minutes. I waited for a bit, when I saw someone was in the building. But, but I passed through here right before.
+        Nate: Do you remember what time that was?
+        Howard: Probably just under an hour ago now.
+    -> It’s a little late to still be working isn’t it?
+        Howard: I’m a research student. I volunteer to do some extra help with cleaning up, and use the facilities a little.
+        Nate: Huh, you must really like this place.
+        Howard: I’ve wanted to work with artifacts like this for, for as long as I can remember. It’s always been a dream.
+        Nate: And what about your friend over there?
+        Howard: I don’t know. I saw him around after hours a lot, but I don’t know if he’s also a student or not.
+    -> Did you see the body?<<if $sawBody is true>>
+        Howard: Um, no. I didn’t want to get close. And I thought they might still be in the building.
+        Nate: So you hid instead of checking on your colleague?
+        Howard: No, I just. No one can live with that kind of injury.
+        Nate: I guess you got pretty good vision.
+        -> What was your relationship with Stuart Mare?
+            Howard: I- well um. We didn't really know each other, really. Just a little… like any other co-workers. Um I’m sorry, am I a suspect?
+            Nate: I don’t know, should you be?
+            Howard: No, no I, no your partner cleared me she said I was fine.
+            Nate: So you didn’t know him well.
+            Howard: Why do you - no. Not really. We both worked after hours sometimes but never really talked.
+    -> Can you get me into that door?<<if $sawDoor is true>>
+        Howard: The supply cupboard? I- I guess but… why would you want to go in there?
+        Nate: Just a hunch.
+        Howard: Alright, here you go.
+        : <Get the key clue> 
+        <<GetKey>>
+        Nate: Alright. Thanks for your help.
+
+ 
+===
+
+

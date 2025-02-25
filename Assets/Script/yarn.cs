@@ -10,13 +10,12 @@ private DialogueRunner dialogueRunner;
 private bool isCurrentConversation;
 public string conversationStartNode;
 private bool interactable;
-
-PlayerController playerController;
+ ClueManager clueManager;
 
 public void Start() {
     dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
     dialogueRunner.onDialogueComplete.AddListener(EndConversation);
-    playerController=FindObjectOfType<PlayerController>();
+    clueManager=FindObjectOfType<ClueManager>();
 }
 
 
@@ -45,13 +44,21 @@ void OnTriggerEnter(Collider other){
     if(other.gameObject.CompareTag("Player")){
         //StartConversation();
         //dialogueRunner.StartDialogue("Cop");
-        if(this.gameObject.CompareTag("Cop")){
-            dialogueRunner.StartDialogue("Cop");
+        if(this.gameObject.CompareTag("Suspect")){
+            dialogueRunner.StartDialogue("Suspect1");
 
-        }else if(this.gameObject.CompareTag("Victim")){
-            dialogueRunner.StartDialogue("Victim");
+        }
+        if(this.gameObject.CompareTag("Victim")){
+            dialogueRunner.StartDialogue("Victim1");
+        }
+        if(this.gameObject.CompareTag("Door")){
+            dialogueRunner.StartDialogue("Door");
         }
     }
 }
-
+[YarnCommand("GetKey")]
+public void GetKeyClue(){
+    clueManager.clue2Button.SetActive(true);
+    clueManager.clueCount++;
+}
 }

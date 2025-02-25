@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
                         agent.SetDestination(navHit.position);
                     }
                 }
-            if (hit.collider.CompareTag("Cop"))
+            if (hit.collider.CompareTag("Suspect"))
                 {
                     targetObject = hit.collider.gameObject;
 

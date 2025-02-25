@@ -18,7 +18,7 @@ public class ClueManager : MonoBehaviour
     public bool canChangeRoom=false;
     public bool canBack=false;
     public bool canCollect7=false;
-   [SerializeField] int clueCount=0;
+   [SerializeField] public int clueCount=0;
 
     void Start()
     {
@@ -48,11 +48,11 @@ public class ClueManager : MonoBehaviour
                 clueCount++;
                 Destroy(targetObject);
             }
-            if(other.gameObject.name=="Clue2"){
-                clue2Button.SetActive(true);
-                clueCount++;
-                Destroy(targetObject);
-            }
+            // if(other.gameObject.name=="Clue2"){
+            //     clue2Button.SetActive(true);
+            //     clueCount++;
+            //     Destroy(targetObject);
+            // }
             if(other.gameObject.name=="Clue3"){
                 clue3Button.SetActive(true);
                 clueCount++;
