@@ -2,7 +2,12 @@ title: Start
 tags:
 ---
 <<declare $sawBody = false>>
+<<declare $talkedBody = false>>
 <<declare $sawDoor = false>>
+<<declare $sawSuspect = false>>
+<<declare $sawAlcohol = false>>
+<<declare $canTransfer = false>>
+
 Nate: Damn. Nice place.
 
 // Cass: The curation is terrible. You can barely tell where one section ends and another begins. And all these different cultures are just getting lumped in as ‘ancient civilisations’. It’s just lazy.
@@ -35,13 +40,18 @@ Nate: Stuart Mare. Doesn’t look like security. Why were you putting up a fight
 title:Door
 tags:
 ---
+<<if $canTransfer is false>>
 Nate: Damn. Locked.
-
 <<set $sawDoor to true>>
+<<endif>>
+<<if $canTransfer is true>>
+Nate: Here we go.
+<<endif>>
 ===
 
 title: Suspect1
 ---
+<<if $sawSuspect is false>>
 Nate: I’m Detective Huston. I understand you saw the murder?
 
 Howard: Um, yes, well, no, not exactly. 
@@ -53,6 +63,9 @@ Howard: I just mean that I, I heard it. And I saw the guy running away.
 Nate: Right. And what’s your name?
 
 Howard: Um, it’s Howard. Howard Philips.
+<<set $sawSuspect to true>>
+<<jump Suspect2>>
+<<endif>>
 
 <<jump Suspect2>>
 ===
@@ -83,6 +96,7 @@ Nate: Ok.
             Howard: No, no I, no your partner cleared me she said I was fine.
             Nate: So you didn’t know him well.
             Howard: Why do you - no. Not really. We both worked after hours sometimes but never really talked.
+            <<set $talkedBody to true>>
     -> Can you get me into that door?<<if $sawDoor is true>>
         Howard: The supply cupboard? I- I guess but… why would you want to go in there?
         Nate: Just a hunch.
@@ -90,8 +104,28 @@ Nate: Ok.
         : <Get the key clue> 
         <<GetKey>>
         Nate: Alright. Thanks for your help.
+        <<set $canTransfer to true>>
 
  
 ===
 
+title:Cass
+tags:
+---
+Cass: How's going on?
+    -> Hey uh, do I smell alright to you?<<if $sawAlcohol is true>>
+        Cass: Why? Do you have a date to get to?
+        Nate: Just.. how do I smell.
+        Cass: I don’t know. Fine I guess. Have you been smoking?
+    ->  Something about Mr Phillips' story doesn’t add up.<<if $talkedBody is true>>
+        Cass: You sure you’re not being a bit paranoid? He was already in the building; I checked the sign up sheet. No reason for him to kick the door in.
+        Nate: True, but he said he walked through the room just before the murder and called it in straight away. That would have been an hour ago.
+        Cass: Yes.
+        Nate: Rigor mortis takes about two hours to set in.
+        Cass: Rigor mortis? How did I miss that?
+        Nate: You didn’t. Perks of being late.
+    -> Give me a second.   
+
+
+===
 

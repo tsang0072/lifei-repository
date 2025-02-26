@@ -87,6 +87,10 @@ public class ClueManager : MonoBehaviour
         }
         
     }
+    public void ShowKeyClue(){
+        clue2Button.SetActive(true);
+        clueCount++;
+    }
     
     
 }

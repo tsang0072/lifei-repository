@@ -4,12 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Corpse
   - Interactable
-  - Cop
   - Victim
   - Suspect
   - Door
+  - Cass
   layers:
   - Default
   - TransparentFX

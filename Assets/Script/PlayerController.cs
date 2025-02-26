@@ -80,7 +80,14 @@ public class PlayerController : MonoBehaviour
                     }
                   
             }
-            
+            if (hit.collider.CompareTag("Cass")){
+                targetObject = hit.collider.gameObject;
+                if (NavMesh.SamplePosition(targetObject.transform.position, out NavMeshHit navHit, 1.0f, NavMesh.AllAreas))
+                    {
+                        agent.SetDestination(navHit.position);
+                    }
+                  
+            }
         }
         
     }

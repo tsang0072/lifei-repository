@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +13,15 @@ public string conversationStartNode;
 private bool interactable;
  ClueManager clueManager;
 
-public void Start() {
+public void Awake()
+{
     dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
+    dialogueRunner.AddCommandHandler(
+        "GetKey", GetKeyClue
+    );
+    
+}
+public void Start() {
     dialogueRunner.onDialogueComplete.AddListener(EndConversation);
     clueManager=FindObjectOfType<ClueManager>();
 }
@@ -54,11 +62,15 @@ void OnTriggerEnter(Collider other){
         if(this.gameObject.CompareTag("Door")){
             dialogueRunner.StartDialogue("Door");
         }
+        if(this.gameObject.CompareTag("Cass")){
+            dialogueRunner.StartDialogue("Cass");
+        }
     }
 }
-[YarnCommand("GetKey")]
-public void GetKeyClue(){
-    clueManager.clue2Button.SetActive(true);
-    clueManager.clueCount++;
+private void GetKeyClue(){
+
+    clueManager.ShowKeyClue();
+    Debug.Log("get Key");
 }
+
 }
