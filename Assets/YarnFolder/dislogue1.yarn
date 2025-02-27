@@ -72,7 +72,7 @@ Howard: Um, it’s Howard. Howard Philips.
 
 title: Suspect2
 ---
-Nate: Ok.  
+Howard: Hi.  
     -> Did you call as soon as you saw the murder?
         Howard: Yes, well, within a few minutes.
         Nate: So was it as soon as or after a few minutes?
@@ -105,8 +105,8 @@ Nate: Ok.
         <<GetKey>>
         Nate: Alright. Thanks for your help.
         <<set $canTransfer to true>>
+    -> Give me a second.
 
- 
 ===
 
 title:Cass
@@ -129,3 +129,41 @@ Cass: How's going on?
 
 ===
 
+//Clues
+title:Clue1
+tags: weapon
+---
+Nate:  You’re a little clean aren’t you?
+===
+title:Clue3
+tags: Broken Artifact
+---
+Nate: Plaster? Hardly a priceless artifact. Looks like our thief didn’t do their research.
+===
+
+title:Clue4
+tags: Expensive Artifact
+---
+Nate: Nate: Jesus. I could pay for my mortgage with this thing. Why wouldn’t you grab this on the way out?
+===
+title:Clue5
+tags: Alcohol
+---
+Nate: Ugh, do I really smell that bad?
+===
+title:Clue6
+tags: Mask
+---
+Nate: Huh. Shiny.
+===
+title:Clue7
+tags: Puddle
+---
+Nate: Jesus, that stinks. Who was pouring out vodka in here?
+===
+title:Clue8
+tags: Bottle
+---
+Nate: Not vodka…
+Nate: Why could I smell this out in the hall?
+===

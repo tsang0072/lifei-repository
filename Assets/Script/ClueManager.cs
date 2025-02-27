@@ -45,7 +45,7 @@ public class ClueManager : MonoBehaviour
             
             if(other.gameObject.name=="Clue1"){
                 clue1Button.SetActive(true);
-                clueCount++;
+                clueCount++; 
                 Destroy(targetObject);
             }
             // if(other.gameObject.name=="Clue2"){

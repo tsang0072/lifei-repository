@@ -65,6 +65,9 @@ void OnTriggerEnter(Collider other){
         if(this.gameObject.CompareTag("Cass")){
             dialogueRunner.StartDialogue("Cass");
         }
+        if(this.gameObject.name=="Clue1"){
+            dialogueRunner.StartDialogue("Clue1");
+        }
     }
 }
 private void GetKeyClue(){
