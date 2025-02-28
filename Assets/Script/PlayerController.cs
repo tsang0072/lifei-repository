@@ -18,11 +18,16 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition;
 
     DialogueRunner dialogueRunner;
+    [SerializeField]ParticleSystem ClickEffect;
+    [SerializeField]LayerMask clickableLayer;
+
+    Animator anime;
 
     void Start()
     {
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
         targetPosition=new Vector3(5,1,23);
+        anime=GetComponent<Animator>();
     }
 
     void Update()
@@ -47,6 +52,11 @@ public class PlayerController : MonoBehaviour
                 {
                     // Set the NavMeshAgent's destination to the hit point
                     agent.SetDestination(navHit.position);
+                    anime.SetBool("walk",true);
+                    if (ClickEffect != null)
+                    {Instantiate(ClickEffect,hit.point+=new Vector3(0, 0.1f,0),ClickEffect.transform.rotation);}
+                }else{
+                    anime.SetBool("walk",false);
                 }
                 
             }
