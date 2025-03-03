@@ -65,8 +65,14 @@ void OnTriggerEnter(Collider other){
         if(this.gameObject.CompareTag("Cass")){
             dialogueRunner.StartDialogue("Cass");
         }
-        if(this.gameObject.name=="Clue1"){
-            dialogueRunner.StartDialogue("Clue1");
+        if(this.gameObject.name=="mace"){
+            dialogueRunner.StartDialogue("mace");
+        }
+        if(this.gameObject.name=="glass"){
+            dialogueRunner.StartDialogue("glass");
+        }
+        if(this.gameObject.name=="bottle"){
+            dialogueRunner.StartDialogue("bottle");
         }
     }
 }

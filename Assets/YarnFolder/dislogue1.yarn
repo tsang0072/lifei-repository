@@ -130,10 +130,15 @@ Cass: How's going on?
 ===
 
 //Clues
-title:Clue1
+title:mace
 tags: weapon
 ---
 Nate:  You’re a little clean aren’t you?
+===
+title:glass
+tags: Broken glass
+---
+Nate: Plaster? Hardly a priceless artifact. Looks like our thief didn’t do their research.
 ===
 title:Clue3
 tags: Broken Artifact
@@ -161,7 +166,7 @@ tags: Puddle
 ---
 Nate: Jesus, that stinks. Who was pouring out vodka in here?
 ===
-title:Clue8
+title:bottle
 tags: Bottle
 ---
 Nate: Not vodka…

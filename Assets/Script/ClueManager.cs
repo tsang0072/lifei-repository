@@ -43,7 +43,7 @@ public class ClueManager : MonoBehaviour
         {
             targetObject=other.gameObject;
             
-            if(other.gameObject.name=="Clue1"){
+            if(other.gameObject.name=="mace"){
                 clue1Button.SetActive(true);
                 clueCount++; 
                 Destroy(targetObject);
@@ -53,7 +53,7 @@ public class ClueManager : MonoBehaviour
             //     clueCount++;
             //     Destroy(targetObject);
             // }
-            if(other.gameObject.name=="Clue3"){
+            if(other.gameObject.name=="glass"){
                 clue3Button.SetActive(true);
                 clueCount++;
                 Destroy(targetObject);
@@ -62,7 +62,7 @@ public class ClueManager : MonoBehaviour
                 clue4Button.SetActive(true);
                 clueCount++;
                 Destroy(targetObject);
-            }if(other.gameObject.name=="Clue5"){
+            }if(other.gameObject.name=="bottle"){
                 clue5Button.SetActive(true);
                 clueCount++;
                 Destroy(targetObject);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ViewClue : MonoBehaviour
 {
-    public float moveSpeed;
+    float moveSpeed=5f;
     public GameObject roationAxis2;
 
     void Update()
@@ -22,12 +22,12 @@ public class ViewClue : MonoBehaviour
         //the illusion of it working like a normal x
         if (Input.GetKey(KeyCode.W))
         {
-            roationAxis2.transform.eulerAngles += moveSpeed * Time.deltaTime * new Vector3(0,0,30);
+            roationAxis2.transform.eulerAngles += moveSpeed * Time.deltaTime * new Vector3(-30,0,30);
         }    
 
         if (Input.GetKey(KeyCode.S))
         {
-            roationAxis2.transform.eulerAngles += moveSpeed * Time.deltaTime * new Vector3(0,0,-30);
+            roationAxis2.transform.eulerAngles += moveSpeed * Time.deltaTime * new Vector3(30,0,30);
         }  
 
     }
