@@ -7,12 +7,15 @@ using Yarn.Unity;
 
 public class PlayerController : MonoBehaviour
 {
+    const string IDLE = "idle";
+    const string WALK = "walk";
     public float moveSpeed = 5f;
     public float rotationSpeed=10f;
     public float stoppingDistance = 0.1f; 
     
 
     public NavMeshAgent agent; 
+    bool canAnime=false;
 
     private GameObject targetObject;
     private Vector3 targetPosition;
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        PlayAnime();
         if (Input.GetMouseButtonDown(0)&&!dialogueRunner.IsDialogueRunning)
         //freeze player movement when in dialogue
         {
@@ -47,29 +50,24 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                // Check if the hit point is on the NavMesh
                 if (NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, 1.0f, NavMesh.AllAreas))
                 {
-                    // Set the NavMeshAgent's destination to the hit point
                     agent.SetDestination(navHit.position);
-                    anime.SetBool("walk",true);
+                    //agent.destination=hit.point;
                     if (ClickEffect != null)
                     {Instantiate(ClickEffect,hit.point+=new Vector3(0, 0.1f,0),ClickEffect.transform.rotation);}
-                }else{
-                    anime.SetBool("walk",false);
                 }
                 
             }
 
             if (hit.collider.CompareTag("Interactable"))
                 {
-                    // Set the target object
                     targetObject = hit.collider.gameObject;
 
-                    // Move to the target object's position
                     if (NavMesh.SamplePosition(targetObject.transform.position, out NavMeshHit navHit, 1.0f, NavMesh.AllAreas))
                     {
                         agent.SetDestination(navHit.position);
+                        canAnime=false;
                     }
                 }
             if (hit.collider.CompareTag("Suspect"))
@@ -99,7 +97,26 @@ public class PlayerController : MonoBehaviour
                   
             }
         }
-        
+        if(dialogueRunner.IsDialogueRunning){
+            agent.velocity=Vector3.zero;
+            agent.SetDestination(agent.transform.position);
+        }
+        if (Vector3.Distance(agent.transform.position, agent.destination) <= 1f)
+            {
+                agent.velocity=Vector3.zero;
+            }
+    }
+    void PlayAnime(){
+        if(agent.velocity==Vector3.zero){
+            anime.Play(IDLE);
+        }else
+        {
+            anime.Play(WALK);
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        agent.velocity=Vector3.zero;
     }
 }
 

@@ -18,11 +18,12 @@ public class ClueManager : MonoBehaviour
     public bool canChangeRoom=false;
     public bool canBack=false;
     public bool canCollect7=false;
+    public bool canAnime;
    [SerializeField] public int clueCount=0;
 
     void Start()
     {
-        
+        canAnime=true;
     }
 
     // Update is called once per frame
