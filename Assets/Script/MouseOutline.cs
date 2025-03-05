@@ -35,7 +35,7 @@ public class MouseOutline : MonoBehaviour
                     highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
                 }
             }
-            else
+            else 
             {
                 highlight = null;
             }
