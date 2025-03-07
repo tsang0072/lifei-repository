@@ -11,12 +11,12 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera[] virtualCameras; 
     public int currentCameraIndex = 0; // Index of the currently active camera
 
-    public float zoomSpeed = 5f; 
-    public float minFOV = 30f; // Minimum field of view (zoom in)
-    public float maxFOV = 80f; // Maximum field of view (zoom out)
+    public float zoomSpeed = 2f; 
+    // public float minFOV = 30f;
+    // public float maxFOV = 80f;
 
-    public float minFollowOffset = 10f;
-    public float maxFollowOffset = 40f;
+    public float minFollowOffset = 5f;
+    public float maxFollowOffset = 10f;
     private Vector3 followOffset;
 
     public GameObject clueCamera;
@@ -117,27 +117,27 @@ public class CameraManager : MonoBehaviour
         virtualCameras[index].Priority = 10;
     }
 
-    void HandleZoom()
-    {
-        CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+    // void HandleZoom()
+    // {
+    //     CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
+    //     float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
-        //Adjust the camera's field of view based on scroll input
-        if (activeCamera != null)
-        {
-            float newFOV = activeCamera.m_Lens.FieldOfView - scrollInput * zoomSpeed;
-            newFOV = Mathf.Clamp(newFOV, minFOV, maxFOV); // Clamp the FOV to min/max values
-            activeCamera.m_Lens.FieldOfView = newFOV;
-        }
+    //     //Adjust the camera's field of view based on scroll input
+    //     if (activeCamera != null)
+    //     {
+    //         float newFOV = activeCamera.m_Lens.FieldOfView - scrollInput * zoomSpeed;
+    //         newFOV = Mathf.Clamp(newFOV, minFOV, maxFOV); // Clamp the FOV to min/max values
+    //         activeCamera.m_Lens.FieldOfView = newFOV;
+    //     }
         
-    }
+    // }
     void HandleZoom_followOffst(){
         //followOffset=virtualCameras[currentCameraIndex].GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
         CinemachineVirtualCamera activeCamera = virtualCameras[currentCameraIndex];
         followOffset=activeCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
         
         Vector3 zoomDir=followOffset.normalized;
-        float zoomAmount=20f;
+        float zoomAmount=5f;
         if(Input.mouseScrollDelta.y<0){
             followOffset+=zoomDir*zoomAmount;
         }
