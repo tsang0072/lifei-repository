@@ -74,6 +74,9 @@ void OnTriggerEnter(Collider other){
         if(this.gameObject.name=="bottle"){
             dialogueRunner.StartDialogue("bottle");
         }
+        if(this.gameObject.name=="Clue_Pharao"){
+            dialogueRunner.StartDialogue("Clue4");
+        }
     }
 }
 private void GetKeyClue(){

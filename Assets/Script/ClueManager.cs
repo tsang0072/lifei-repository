@@ -59,7 +59,7 @@ public class ClueManager : MonoBehaviour
                 clueCount++;
                 Destroy(targetObject);
             }
-            if(other.gameObject.name=="Clue4"){
+            if(other.gameObject.name=="Clue_Pharao"){
                 clue4Button.SetActive(true);
                 clueCount++;
                 Destroy(targetObject);
