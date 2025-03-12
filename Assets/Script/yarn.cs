@@ -77,6 +77,10 @@ void OnTriggerEnter(Collider other){
         if(this.gameObject.name=="Clue_Pharao"){
             dialogueRunner.StartDialogue("Clue4");
         }
+        if(this.gameObject.name=="DamagedArtifact"){
+            dialogueRunner.StartDialogue("Clue3");
+            clueManager.showClue7();
+        }
     }
 }
 private void GetKeyClue(){

@@ -27,7 +27,7 @@ public class TransferPlayer : MonoBehaviour
             if(!gameManager.isRoomB&&clueManager.canChangeRoom){
                 gameManager.isRoomB=true;
                 ChangeToRoomB();
-            }else if(gameManager.isRoomB&&clueManager.canCollect7){
+            }else if(gameManager.isRoomB){
                 gameManager.isRoomB=false;
                 ChangeToMian();
             }

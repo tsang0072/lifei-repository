@@ -17,7 +17,6 @@ public class ClueManager : MonoBehaviour
     public GameObject clue8Button;
     public bool canChangeRoom=false;
     public bool canBack=false;
-    public bool canCollect7=false;
     public bool canAnime;
    [SerializeField] public int clueCount=0;
 
@@ -32,9 +31,7 @@ public class ClueManager : MonoBehaviour
         if(clueCount==4){
             canChangeRoom=true;
         }
-        if(clueCount==6){
-            canCollect7=true;
-        }
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -49,11 +46,6 @@ public class ClueManager : MonoBehaviour
                 clueCount++; 
                 Destroy(targetObject);
             }
-            // if(other.gameObject.name=="Clue2"){
-            //     clue2Button.SetActive(true);
-            //     clueCount++;
-            //     Destroy(targetObject);
-            // }
             if(other.gameObject.name=="glass"){
                 clue3Button.SetActive(true);
                 clueCount++;
@@ -72,12 +64,12 @@ public class ClueManager : MonoBehaviour
                 clueCount++;
                 Destroy(targetObject);
             }
-            if(other.gameObject.name=="Clue7"&&canCollect7){
+            if(other.gameObject.name=="DamagedArtifact"){
                 clue7Button.SetActive(true);
                 clueCount++;
                 Destroy(targetObject);
             }
-            if(other.gameObject.name=="Clue8"&&canCollect7){
+            if(other.gameObject.name=="Clue8"){
                 clue8Button.SetActive(true);
                 clueCount++;
                 Destroy(targetObject);
@@ -92,6 +84,10 @@ public class ClueManager : MonoBehaviour
         clue2Button.SetActive(true);
         clueCount++;
     }
-    
+    public void showClue7(){
+        clue7Button.SetActive(true);
+                clueCount++;
+                Destroy(targetObject);
+    }
     
 }
