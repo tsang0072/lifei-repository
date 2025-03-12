@@ -3,7 +3,12 @@ guid: 1f75cad365527da47aac084ca0809e2f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Carp
+    second: {fileID: 2100000, guid: 8b25a714862215542ba94dbbc9370f4c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

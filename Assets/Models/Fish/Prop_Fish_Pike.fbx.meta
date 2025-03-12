@@ -3,7 +3,12 @@ guid: af63ce1df0cc4e146ac8eded686bdcf9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pike
+    second: {fileID: 2100000, guid: 0d64d54c015f43b40aeeafce3f9e50f8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
