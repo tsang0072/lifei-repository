@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameManager=GameManager.instance;
         cameraManager=CameraManager.instance;
+        
     }
 
     public void TriggerClueMenu(){
